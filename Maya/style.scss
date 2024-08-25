@@ -1,0 +1,112 @@
+$snake-color: #4caf50;
+$food-color: #f44336;
+$bg-color: #222222;
+$grid-size: 20px;
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-image: url('https://wallpapers.com/images/high/green-snake-game-character-bqvxt2p5oibadgqn.webp') ;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75vmin;
+  background-color: #ffffff;
+}
+
+
+#score-container {
+  color: rgb(230, 220, 220);;
+  display: flex;
+  justify-content: space-between;
+  width: 68vmin;
+  height: 5vh;
+  padding: 20px 27px;
+  background: linear-gradient(#5e5a5a, #8b8b8d);
+  font-weight: bold;  
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+
+#game-container {
+  width: 75vmin;
+  height: 80vmin;
+  background-color: $bg-color;
+  position: relative;
+  border: 2px solid #333; 
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.snake-segment {
+  width: $grid-size;
+  height: $grid-size;
+  background-color: $snake-color;
+  position: absolute;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.food {
+  width: $grid-size;
+  height: $grid-size;
+  background-color: $food-color;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.food:hover {
+  transform: scale(1.1);
+}
+
+#start-again {
+  border-radius: 30px;
+  position: absolute;
+  font-weight: 300;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: black;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#start-again:hover {
+  background-color: rgb(233, 242, 55);
+  color: #333;  
+  transform: translate(-50%, -50%) scale(1.1);  
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 500px) {
+  #game-container {
+    width: 90%;
+    height: 90%;
+  }
+
+  .snake-segment,
+  .food {
+    width: calc($grid-size / 2);
+    height: calc($grid-size / 2);
+  }
+
+  #score, #high-score {
+    font-size: 16px;
+  }
+}
