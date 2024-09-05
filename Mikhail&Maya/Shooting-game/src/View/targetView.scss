@@ -1,0 +1,72 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2%;
+  margin: 5%;
+  bottom: 100vh;
+  left: 10%;
+  right: 10%;
+}
+
+.grid-item {
+  position: relative;
+  width: 21vw;
+  height: 36vh;
+  top: 21vh;
+  overflow: hidden;
+  right: inherit;
+}
+
+.viewtarget {
+  position: absolute;
+  bottom: -100%;
+  width: 19vw;
+  height: 24vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: bottom 0.5s ease;
+}
+
+.viewtarget {
+  position: absolute;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(0);
+  opacity: 0;
+  border-radius: 10%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.up {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.out {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.hit-effect {
+    animation: hit-flash 0.3s ease-out, hit-fade 0.7s ease-out 0.3s;
+  }
+  
+  @keyframes hit-flash {
+    0% {
+      background-color: rgba(255, 0, 0, 0.7);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+  
+  @keyframes hit-fade {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  

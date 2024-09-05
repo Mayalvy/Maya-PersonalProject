@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#game{
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    align-content: center;
+    background-color: grey;
+    
+}
+
+#start{
+    background-color: red;
+    height: 50px;
+    width: 100px;
+    border-radius: 10%;
+}
+.weaponSelect{
+    height: 100%;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+
+    .weaponCard{
+     border-radius: 10%;
+     background-color:white;
+     width:250px;
+     border:black solid 2px;
+     &:hover{
+
+        border-color:red;
+     }
+     &:active{
+        filter: brightness(0.9);
+     }
+    }
+    
+}
+.window{
+    width:100%;
+    height: 100%;
+    cursor: crosshair;
+    .curtains{
+        position:absolute;
+        height: 100%;
+        width: 100%;
+        background-image: url(/src/images/gaza2.png);
+        background-size: cover;
+    }
+}
