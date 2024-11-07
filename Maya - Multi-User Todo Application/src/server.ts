@@ -2,14 +2,20 @@ import express from 'express'
 const app = express()
 const port = 3000;
 import cookieParser from 'cookie-parser';
+import usersRouter from './routes/user/usersRoutes';
 
 
 app.use(express.static('public'))
+
+app.use('/users',usersRouter);
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
 
+  //middlewares
   app.use(express.json());
   app.use(cookieParser());
 
