@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register </title>
     <script src="./dist/register.js" defer></script>
+    <link rel="stylesheet" href="./dist/register.css">
 </head>
 <body>
+    <div class="register-container">
+        <h1>Register</h1>
     <form onsubmit="handleRegister(event)">
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="email" required>
         <input type="password" name="password" placeholder="password" required>
         <button type="submit">Register</button>
+        <a href="./../login/login.html">Login</a>
     </form>
-    <a href="./../login/login.html">Login</a>
+    </div>
+
 </body>
 </html>

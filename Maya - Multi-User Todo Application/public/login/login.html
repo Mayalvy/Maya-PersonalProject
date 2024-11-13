@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="./dist/login.js" defer></script>
+    <link rel="stylesheet" href="./dist/login.css">
 </head>
 <body>
+    <div class="login-container">
     <h1>Login to your platform</h1>
     <form onsubmit="handleLogin(event)">
         <input type="email" name="email" placeholder="email" required>
         <input type="password" name="password" placeholder="password" required>
         <button type="submit">Login</button>
     </form>
+</div>
 </body>
 </html>

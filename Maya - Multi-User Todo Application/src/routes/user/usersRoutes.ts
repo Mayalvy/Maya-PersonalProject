@@ -5,7 +5,6 @@ import { checkUser } from "../../controllers/middlwares/loginMid";
 
 const router = express.Router();
 
-router.use(checkUser);
-router.post("/login", login).post("/register", register).get("/getUser", getUser);
+router.post("/login", login).post("/register", register).get("/getUser",checkUser, getUser);
 
 export default router;

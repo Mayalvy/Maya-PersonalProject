@@ -3,23 +3,28 @@ import { User } from "../../model/userModel";
 import jwt from "jwt-simple";
 import bcrypt from "bcryptjs";
 import "dotenv/config";
+import dotenv from 'dotenv';
 
-export async function register(req: Request, res: Response) {
+
+dotenv.config();
+
+
+export async function register(req: any, res: any) {
   try {
     var salt = bcrypt.genSaltSync(10);
     const { email, password, name } = req.body;
 
     var hashedPassword = bcrypt.hashSync(password, salt);
     console.log(hashedPassword);
-    //save username and password to database
-    const user = new User({ email, password: hashedPassword, name });
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).send({ error: "User already exists" });
     }
 
-    await user.save();
+    //save username and password to database
+    const user = new User({ email, password: hashedPassword, name });
+   await user.save();
 
     res.status(200).send({ ok: true });
   } catch (error) {
@@ -30,7 +35,7 @@ export async function register(req: Request, res: Response) {
 
 
 
-export async function login(req: Request, res: Response) {
+export async function login(req: any, res: any) {
   try {
     const secret = process.env.SECRET as string;
 

@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body, html {
+  height: 100%;
+  background: linear-gradient(135deg, #ffafbd 0%, #ea84f8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 40px;
+  width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-5px);
+}
+
+h1 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}

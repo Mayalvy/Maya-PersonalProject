@@ -3,11 +3,13 @@ const app = express()
 const port = 3000;
 import cookieParser from 'cookie-parser';
 import usersRouter from './routes/user/usersRoutes';
+import dotenv from 'dotenv';
 
-
+dotenv.config();
+app.use(express.json());
 app.use(express.static('public'))
 
-app.use('/users',usersRouter);
+app.use('/user',usersRouter);
 
 
 
@@ -26,8 +28,9 @@ app.listen(port, () => {
   })
 
   //connection to db
+  const DB_URL = process.env.DB_URL 
   const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://mayalevy20:e0ok6g2sVajOLOhu@cluster0.emeus.mongodb.net/Todo-App').then(()=>{
+mongoose.connect(DB_URL).then(()=>{
   console.log('connected to db')
 })
 .catch((err:any)=>{

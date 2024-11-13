@@ -5,7 +5,7 @@ async function handleRegister(e){
      const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
         console.log(data)
-        const response = await fetch('/users/register', {
+        const response = await fetch('/user/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -13,6 +13,7 @@ async function handleRegister(e){
             body: JSON.stringify(data),
         });
 
+        
 
             const jsonResponse = await response.json();
             console.log(jsonResponse);

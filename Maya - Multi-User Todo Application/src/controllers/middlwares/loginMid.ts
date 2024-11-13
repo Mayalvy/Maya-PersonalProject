@@ -1,6 +1,8 @@
 import { NextFunction } from "express";
 import jwt from "jwt-simple";
 
+
+
 export async function checkUser(req: any, res: any, next: NextFunction) {
   try {
     const secret = process.env.SECRET as string;
