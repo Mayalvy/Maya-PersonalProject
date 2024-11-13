@@ -85,6 +85,9 @@ function login(req, res) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     secret = process.env.SECRET;
+                    if (!secret) {
+                        throw new Error("Missing JWT secret key.");
+                    }
                     _a = req.body, email = _a.email, password = _a.password;
                     return [4 /*yield*/, userModel_1.User.findOne({ email: email })];
                 case 1:

@@ -32,3 +32,39 @@ function helloUser(userName:string, element:HTMLElement|null){
     }
     
 }
+
+function renderTodo(todos) {
+    const todoContainer = document.getElementById('todoContainer');
+    if (!todoContainer) {
+        console.error("todoContainer not found");
+        return;
+    }
+    todoContainer.innerHTML = '';
+    if (todos.length === 0) {
+        todoContainer.innerHTML = '<p>No posts to display</p>';
+        return;
+    }
+    todos.forEach(todo => {
+        const todoElement = document.createElement('div');
+        todoElement.classList.add('todo');
+
+        if (todo.status === 'complete') {
+            todoElement.classList.add('complete');
+        } else {
+            todoElement.classList.add('incomplete');
+        }
+
+         todoElement.innerHTML = `
+            <div class="todo-header">
+                <h3 class="todo-title">${todo.title}</h3>
+                <span class="todo-status ${todo.status}">
+                    ${todo.status === 'complete' ? '✔️ Complete' : '❌ Incomplete'}
+                </span>
+            </div>
+            <p class="todo-description">${todo.description || 'No description provided.'}</p>
+            <p class="todo-due-date">Due: ${new Date(todo.dueDate).toLocaleDateString()}</p>
+        `;
+
+        todoContainer.appendChild(todoElement);
+    });
+}

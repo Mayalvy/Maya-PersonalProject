@@ -38,6 +38,9 @@ export async function register(req: any, res: any) {
 export async function login(req: any, res: any) {
   try {
     const secret = process.env.SECRET as string;
+    if (!secret) {
+      throw new Error("Missing JWT secret key.");
+    }
 
     const { email, password } = req.body;
 

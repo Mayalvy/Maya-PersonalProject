@@ -3,6 +3,7 @@ const app = express()
 const port = 3000;
 import cookieParser from 'cookie-parser';
 import usersRouter from './routes/user/usersRoutes';
+import todoRouter from './routes/todo/todoRoutes';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.static('public'))
 
 app.use('/user',usersRouter);
+app.use('/todo', todoRouter);
 
 
 

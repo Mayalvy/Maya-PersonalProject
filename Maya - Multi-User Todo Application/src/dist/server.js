@@ -5,11 +5,13 @@ var app = express_1["default"]();
 var port = 3000;
 var cookie_parser_1 = require("cookie-parser");
 var usersRoutes_1 = require("./routes/user/usersRoutes");
+var todoRoutes_1 = require("./routes/todo/todoRoutes");
 var dotenv_1 = require("dotenv");
 dotenv_1["default"].config();
 app.use(express_1["default"].json());
 app.use(express_1["default"].static('public'));
 app.use('/user', usersRoutes_1["default"]);
+app.use('/todo', todoRoutes_1["default"]);
 app.listen(port, function () {
     console.log("Example app listening on port " + port);
 });
