@@ -9,6 +9,7 @@ var todoRoutes_1 = require("./routes/todo/todoRoutes");
 var dotenv_1 = require("dotenv");
 dotenv_1["default"].config();
 app.use(express_1["default"].json());
+app.use(cookie_parser_1["default"]());
 app.use(express_1["default"].static('public'));
 app.use('/user', usersRoutes_1["default"]);
 app.use('/todo', todoRoutes_1["default"]);

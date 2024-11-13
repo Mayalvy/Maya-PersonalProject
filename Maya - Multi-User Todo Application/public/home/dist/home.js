@@ -77,14 +77,14 @@ function helloUser(userName, element) {
     }
 }
 function renderTodo(todos) {
-    var todoContainer = document.getElementById('todoContainer');
+    var todoContainer = document.getElementById('todosContainer');
     if (!todoContainer) {
-        console.error("todoContainer not found");
+        console.error("todosContainer not found");
         return;
     }
     todoContainer.innerHTML = '';
     if (todos.length === 0) {
-        todoContainer.innerHTML = '<p>No posts to display</p>';
+        todoContainer.innerHTML = '<p>No todos to display</p>';
         return;
     }
     todos.forEach(function (todo) {
@@ -100,3 +100,81 @@ function renderTodo(todos) {
         todoContainer.appendChild(todoElement);
     });
 }
+var newTodoForm = document.getElementById('newTodoForm');
+if (newTodoForm) {
+    newTodoForm.addEventListener('submit', function (e) {
+        return __awaiter(this, void 0, void 0, function () {
+            var titleElement, descriptionElement, response, result, error_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        e.preventDefault();
+                        titleElement = document.getElementById('title');
+                        descriptionElement = document.getElementById('description');
+                        if (!titleElement || !descriptionElement) {
+                            console.error("Input elements not found");
+                            return [2 /*return*/];
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        return [4 /*yield*/, fetch('http://localhost:3000/todo/addTodo', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ title: title, description: description })
+                            })];
+                    case 2:
+                        response = _a.sent();
+                        return [4 /*yield*/, response.json()];
+                    case 3:
+                        result = _a.sent();
+                        if (result.ok) {
+                            loadtodos();
+                        }
+                        else {
+                            alert('Failed to create todo');
+                        }
+                        return [3 /*break*/, 5];
+                    case 4:
+                        error_2 = _a.sent();
+                        console.error('Error creating todo:', error_2);
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
+                }
+            });
+        });
+    });
+}
+else {
+    console.error('newTodoForm element not found');
+}
+function loadtodos() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, todos, error_3;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch('http://localhost:3000/todo')];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok)
+                        throw new Error('Failed to load todos');
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    todos = _a.sent();
+                    renderTodo(todos);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_3 = _a.sent();
+                    console.error('Error loading todos:', error_3);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+getUser();
+loadtodos();

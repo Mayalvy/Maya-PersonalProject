@@ -44,25 +44,34 @@ function checkUser(req, res, next) {
         return __generator(this, function (_a) {
             try {
                 secret = process.env.SECRET;
+                if (!secret) {
+                    throw new Error("SECRET environment variable is not defined.");
+                }
                 userId = req.cookies.userId;
                 console.log("checkUser", userId);
                 if (!userId) {
                     res.status(401).send({ error: "User not found" });
                     return [2 /*return*/];
                 }
-                user = jwt_simple_1["default"].decode(userId, secret);
-                console.log(user);
-                if (!user) {
-                    res.status(401).send({ error: "User not found" });
-                    return [2 /*return*/];
+                user = void 0;
+                try {
+                    user = jwt_simple_1["default"].decode(userId, secret);
+                }
+                catch (decodeError) {
+                    console.error("JWT decode failed:", decodeError);
+                    return [2 /*return*/, res.status(401).send({ error: "Invalid token" })];
+                }
+                console.log("Decoded user info:", user);
+                if (!user || !user.userId) {
+                    return [2 /*return*/, res.status(401).send({ error: "User not authenticated" })];
                 }
                 req.userId = user.userId;
                 req.role = user.role;
                 next();
             }
             catch (error) {
-                console.error(error);
-                res.send(error);
+                console.error("checkUser error:", error);
+                res.status(500).send({ error: "Internal server error" });
             }
             return [2 /*return*/];
         });

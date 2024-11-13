@@ -41,31 +41,31 @@ var userModel_1 = require("../../model/userModel");
 var todoModel_1 = require("../../model/todoModel");
 function addTodo(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var content, userId, user, newTodo, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var _a, title, description, userId, user, newTodo, error_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    content = req.body.content;
+                    _b.trys.push([0, 3, , 4]);
+                    _a = req.body, title = _a.title, description = _a.description;
                     userId = req.cookies.userId;
                     return [4 /*yield*/, userModel_1.User.findById(userId)];
                 case 1:
-                    user = _a.sent();
+                    user = _b.sent();
                     if (!user) {
                         return [2 /*return*/, res.status(401).send({ error: 'User not authenticated' })];
                     }
                     newTodo = new todoModel_1.Todo({
-                        title: String, description: String,
+                        title: title, description: description,
                         user: userId,
                         createdAt: new Date()
                     });
                     return [4 /*yield*/, newTodo.save()];
                 case 2:
-                    _a.sent();
+                    _b.sent();
                     res.status(200).send({ ok: true });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     console.error('Error creating post:', error_1);
                     res.status(500).send({ error: 'Failed to create post' });
                     return [3 /*break*/, 4];

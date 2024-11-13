@@ -4,7 +4,7 @@ import { Todo } from '../../model/todoModel';
 
 export async function addTodo(req: any, res: any) {
     try {
-        const { content } = req.body;
+        const { title, description  } = req.body;
         const userId = req.cookies.userId;
 
         const user = await User.findById(userId);
@@ -13,7 +13,7 @@ export async function addTodo(req: any, res: any) {
        }
 
        const newTodo = new Todo({
-        title:String,description:String,
+        title, description,
         user: userId,
         createdAt: new Date(),
     });
