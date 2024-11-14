@@ -118,12 +118,12 @@ if (newTodoForm) {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 4, , 5]);
-                        return [4 /*yield*/, fetch('http://localhost:3000/todo/addTodo', {
+                        return [4 /*yield*/, fetch('todo/addTodo', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
-                                body: JSON.stringify({ title: title, description: description })
+                                body: JSON.stringify({ title: String, description: String })
                             })];
                     case 2:
                         response = _a.sent();
@@ -157,7 +157,7 @@ function loadtodos() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch('http://localhost:3000/todo')];
+                    return [4 /*yield*/, fetch('/todo')];
                 case 1:
                     response = _a.sent();
                     if (!response.ok)

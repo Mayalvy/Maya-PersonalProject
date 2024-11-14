@@ -76,12 +76,12 @@ if (newTodoForm) {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/todo/addTodo', {
+            const response = await fetch('todo/addTodo', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ title, description }),
+                body: JSON.stringify({ title:String, description:String, }),
             });
 
             const result = await response.json();
@@ -101,7 +101,7 @@ if (newTodoForm) {
 
 async function loadtodos() {
     try {
-        const response = await fetch('http://localhost:3000/todo');
+        const response = await fetch('/todo');
         if (!response.ok) throw new Error('Failed to load todos');
         const todos = await response.json();
         renderTodo(todos);
