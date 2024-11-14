@@ -68,12 +68,12 @@ if (newTodoForm) {
         e.preventDefault();
         const titleElement = document.getElementById('title');
         const descriptionElement = document.getElementById('description');
+        
 
         if (!titleElement || !descriptionElement) {
             console.error("Input elements not found");
             return;
         }
-
 
         try {
             const response = await fetch('http://localhost:3000/todo/addTodo', {
